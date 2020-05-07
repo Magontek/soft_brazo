@@ -58,7 +58,6 @@ void serial_catcher(){
         case 's': //aca se recibe el stream de angulos
           for (int i=0;i<5;i++){
             ang[i]=Serial.parseFloat();
-            
           }
           for (int i=0;i<5;i++){
             Serial.print(ang[i]);
@@ -91,19 +90,19 @@ void serial_catcher(){
               }
               switch (servo){//seleeciona el servo
                 case 'a':
-                  ang1=angulo;
+                  ang[0]=angulo;
                 break;
                 case 'b':
-                  ang2=angulo;
+                  ang[1]=angulo;
                 break;
                 case 'c':
-                  ang3=angulo;
+                  ang[2]=angulo;
                 break;
                 case 'd':
-                  ang4=angulo;
+                  ang[3]=angulo;
                 break;
                 case 'e':
-                  ang5=angulo;
+                  ang[4]=angulo;
                 break;
                 default:
                   Serial.println("Ese servo no existe");
@@ -136,16 +135,16 @@ void loop() {
   serial_catcher();
   if((millis()-old_time)>100){
     old_time=millis();
-    servo1.write(int(ang[0]));
-    delay(2); 
-    servo1.write(ang[1]);
-    delay(2); 
-    servo1.write(ang[2]);
-    delay(2); 
-    servo1.write(ang[3]);
-    delay(2); 
-    servo1.write(ang[4]);
-    delay(2); 
+    servo1.write(ang[0]);
+    delay(10); 
+    servo2.write(ang[1]);
+    delay(10); 
+    servo3.write(ang[2]);
+    delay(10); 
+    servo4.write(ang[3]);
+    delay(10); 
+    servo5.write(ang[4]);
+    delay(10); 
     digitalWrite(LED_BUILTIN, estado_led);
     estado_led=!estado_led;
   }
